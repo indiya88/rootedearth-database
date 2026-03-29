@@ -15,6 +15,8 @@ It analyzes business performance across revenue, inventory, and customer behavio
 ---
 
 ## Data Analysis
+The `queries.sql` file contains real business-focused analysis, including revenue breakdowns, inventory tracking, and customer behavior insights.
+
 Developed 17+ SQL queries to analyze:
 
 - Monthly, weekly, and yearly revenue
