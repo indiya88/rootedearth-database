@@ -35,9 +35,15 @@ Developed 17+ SQL queries to analyze:
 
 ---
 
-## Database Schema
+## Database Schema (Simplified View)
 
 ![Schema](schema.png)
+
+---
+
+## Full ERD (Technical View)
+
+![Full ERD](full-erd.png)
 
 ---
 
