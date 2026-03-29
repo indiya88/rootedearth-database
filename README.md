@@ -1,7 +1,7 @@
 # RootedEarth Database – Retail Analytics
 
 ## Overview
-This project is a relational database designed to simulate a multi-location retail business.
+This project simulates real-world business operations and demonstrates how SQL can be used to transform raw transactional data into actionable insights.
 
 It analyzes business performance across revenue, inventory, and customer behavior using SQL.
 
