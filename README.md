@@ -37,15 +37,16 @@ Developed 17+ SQL queries to analyze:
 
 ## Database Schema (Simplified View)
 
-![Schema](schema.png)
-
+<img src="schema.png" width="800">
 ---
 
 ## Full ERD (Technical View)
 
-![Full ERD](full-erd.png)
-
+<img src="full-erd.png" width="800">
 ---
 
 ## Key Insight
 Identified patterns in product performance and revenue distribution, demonstrating how structured data analysis supports business decision-making.
+
+## Final Note
+This project demonstrates my ability to design structured data systems and apply SQL to generate actionable business insights—bridging technical implementation with real-world analytics.
