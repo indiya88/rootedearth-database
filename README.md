@@ -1,0 +1,43 @@
+# RootedEarth Database – Retail Analytics
+
+## Overview
+This project is a relational database designed to simulate a multi-location retail business.
+
+It analyzes business performance across revenue, inventory, and customer behavior using SQL.
+
+---
+
+## Database Design
+- Normalized relational schema
+- Multiple interconnected tables (Customers, Orders, Products, etc.)
+- Primary & foreign key relationships
+
+---
+
+## Data Analysis
+Developed 17+ SQL queries to analyze:
+
+- Monthly, weekly, and yearly revenue
+- Inventory performance
+- Customer purchasing behavior
+- Sales across locations
+
+---
+
+## Files Included
+
+- `01_create_tables.sql` – database structure  
+- `02_insert_data.sql` – sample data  
+- `03_indexes.sql` – performance optimization  
+- `04_queries.sql` – business analysis queries  
+
+---
+
+## Database Schema
+
+![Schema](schema.png)
+
+---
+
+## Key Insight
+Identified patterns in product performance and revenue distribution, demonstrating how structured data analysis supports business decision-making.
