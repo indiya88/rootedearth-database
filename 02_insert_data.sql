@@ -175,200 +175,293 @@ INSERT INTO Customers (FirstName, LastName, Email, Phone, City, PostalCode, Loya
 
 -- =========================================
 -- EMPLOYEES
+-- 10 pharmacists, 10 assistants, 4 rotating doctors
 -- =========================================
 INSERT INTO Employees (FirstName, LastName, Role, LocationID, HireDate, Phone) VALUES
-('Maya','Thomas','Naturopathic Herbalist',1,'2024-01-15','416-555-4101'),
-('Daniel','Brooks','Herbal Pharmacist',2,'2024-02-10','416-555-4102'),
-('Olivia','James','Assistant',3,'2024-03-05','416-555-4103'),
-('Ethan','Carter','Sales Associate',4,'2024-01-22','416-555-4104'),
-('Sophia','Mitchell','Sales Associate',5,'2024-04-12','416-555-4105'),
-('Lucas','Hall','Naturopathic Herbalist',6,'2024-02-18','416-555-4106'),
-('Ava','Turner','Herbal Pharmacist',7,'2024-03-30','416-555-4107'),
-('Noah','Parker','Assistant',8,'2024-05-08','416-555-4108'),
-('Mia','Evans','Sales Associate',9,'2024-06-14','416-555-4109'),
-('Liam','Scott','Sales Associate',10,'2024-07-01','416-555-4110');
+('Maya','Thomas','Herbal Pharmacist',1,'2024-01-15','416-555-4101'),
+('Daniel','Brooks','Herbal Pharmacist',2,'2024-01-18','416-555-4102'),
+('Olivia','James','Herbal Pharmacist',3,'2024-01-20','416-555-4103'),
+('Ethan','Carter','Herbal Pharmacist',4,'2024-01-22','416-555-4104'),
+('Sophia','Mitchell','Herbal Pharmacist',5,'2024-01-24','416-555-4105'),
+('Lucas','Hall','Herbal Pharmacist',6,'2024-01-26','416-555-4106'),
+('Ava','Turner','Herbal Pharmacist',7,'2024-01-28','416-555-4107'),
+('Noah','Parker','Herbal Pharmacist',8,'2024-01-30','416-555-4108'),
+('Mia','Evans','Herbal Pharmacist',9,'2024-02-01','416-555-4109'),
+('Liam','Scott','Herbal Pharmacist',10,'2024-02-03','416-555-4110'),
+
+('Janelle','Ross','Assistant',1,'2024-02-10','416-555-4201'),
+('Rohan','Miller','Assistant',2,'2024-02-12','416-555-4202'),
+('Amina','Said','Assistant',3,'2024-02-14','416-555-4203'),
+('Shanice','Edwards','Assistant',4,'2024-02-16','416-555-4204'),
+('Leon','Watson','Assistant',5,'2024-02-18','416-555-4205'),
+('Bianca','Evans','Assistant',6,'2024-02-20','416-555-4206'),
+('Chantel','Morris','Assistant',7,'2024-02-22','416-555-4207'),
+('Wesley','Barnes','Assistant',8,'2024-02-24','416-555-4208'),
+('Naomi','Walker','Assistant',9,'2024-02-26','416-555-4209'),
+('Damian','Scott','Assistant',10,'2024-02-28','416-555-4210'),
+
+('Drake','Bennett','Herbal Doctor',1,'2024-03-05','416-555-4301'),
+('Selena','Morris','Herbal Doctor',3,'2024-03-07','416-555-4302'),
+('Tariq','Ahmed','Herbal Doctor',6,'2024-03-09','416-555-4303'),
+('Monique','Bailey','Herbal Doctor',9,'2024-03-11','416-555-4304');
 
 -- =========================================
 -- PRODUCTS
 -- =========================================
 INSERT INTO Products (ProductName, CategoryID, DepartmentID, SupplierID, UnitPrice, StockQuantity, CreatedDate) VALUES
-('Chamomile Tea',1,7,1,10.99,80,'2025-01-01'),
-('Lemon Balm Tea',1,7,2,11.49,76,'2025-01-02'),
-('Hibiscus Tea',1,10,3,9.99,92,'2025-01-03'),
-('Ginger Tea Blend',1,6,4,12.99,88,'2025-01-04'),
-('Moringa Tea',1,9,5,13.50,74,'2025-01-05'),
-('Soursop Leaf Tea',1,10,6,14.25,69,'2025-01-06'),
-('Women Wellness Tea',1,1,7,15.25,65,'2025-01-07'),
-('Men Vitality Tea',1,2,8,15.75,61,'2025-01-08'),
-('Kids Calm Tea',1,3,9,10.50,70,'2025-01-09'),
-('Cerasee Detox Tea',1,6,6,13.99,72,'2025-01-10'),
-('Guinea Hen Weed Tea',1,5,6,14.99,58,'2025-01-11'),
-('Sleep Ease Tea',1,7,10,12.75,84,'2025-01-12'),
+('Chamomile Tea',1,7,1,10.99,1600,'2025-01-01'),
+('Lemon Balm Tea',1,7,2,11.49,1550,'2025-01-02'),
+('Hibiscus Tea',1,10,3,9.99,1700,'2025-01-03'),
+('Ginger Tea Blend',1,6,4,12.99,1650,'2025-01-04'),
+('Moringa Tea',1,9,5,13.50,1500,'2025-01-05'),
+('Soursop Leaf Tea',1,10,6,14.25,1450,'2025-01-06'),
+('Women Wellness Tea',1,1,7,15.25,1400,'2025-01-07'),
+('Men Vitality Tea',1,2,8,15.75,1400,'2025-01-08'),
+('Kids Calm Tea',1,3,9,10.50,1500,'2025-01-09'),
+('Cerasee Detox Tea',1,6,6,13.99,1450,'2025-01-10'),
+('Guinea Hen Weed Tea',1,5,6,14.99,1350,'2025-01-11'),
+('Sleep Ease Tea',1,7,10,12.75,1550,'2025-01-12'),
 
-('Ashwagandha Capsules',2,9,2,18.99,75,'2025-02-01'),
-('Elderberry Capsules',2,5,1,19.99,72,'2025-02-02'),
-('Sea Moss Capsules',2,10,6,21.50,68,'2025-02-03'),
-('Turmeric Capsules',2,6,4,17.99,82,'2025-02-04'),
-('Men Daily Capsules',2,2,8,20.25,54,'2025-02-05'),
-('Women Balance Capsules',2,1,7,21.99,50,'2025-02-06'),
-('Kids Immune Chews',2,3,9,16.50,79,'2025-02-07'),
-('Pet Joint Capsules',2,4,5,22.75,47,'2025-02-08'),
-('Iron Boost Capsules',2,1,3,19.50,59,'2025-02-09'),
-('Magnesium Calm Capsules',2,7,2,18.25,73,'2025-02-10'),
-('Moringa Capsules',2,9,6,17.50,66,'2025-02-11'),
-('Digestive Enzyme Capsules',2,6,10,20.99,62,'2025-02-12'),
+('Ashwagandha Capsules',2,9,2,18.99,1350,'2025-02-01'),
+('Elderberry Capsules',2,5,1,19.99,1350,'2025-02-02'),
+('Sea Moss Capsules',2,10,6,21.50,1200,'2025-02-03'),
+('Turmeric Capsules',2,6,4,17.99,1350,'2025-02-04'),
+('Men Daily Capsules',2,2,8,20.25,1200,'2025-02-05'),
+('Women Balance Capsules',2,1,7,21.99,1150,'2025-02-06'),
+('Kids Immune Chews',2,3,9,16.50,1400,'2025-02-07'),
+('Pet Joint Capsules',2,4,5,22.75,1100,'2025-02-08'),
+('Iron Boost Capsules',2,1,3,19.50,1250,'2025-02-09'),
+('Magnesium Calm Capsules',2,7,2,18.25,1350,'2025-02-10'),
+('Moringa Capsules',2,9,6,17.50,1300,'2025-02-11'),
+('Digestive Enzyme Capsules',2,6,10,20.99,1200,'2025-02-12'),
 
-('Valerian Tincture',3,7,1,21.99,48,'2025-03-01'),
-('Milk Thistle Tincture',3,6,2,20.99,51,'2025-03-02'),
-('Ginger Tincture',3,6,3,18.75,63,'2025-03-03'),
-('Nettle Tincture',3,10,4,19.25,57,'2025-03-04'),
-('Dandelion Tincture',3,6,5,18.50,60,'2025-03-05'),
-('Soursop Tincture',3,10,6,23.50,45,'2025-03-06'),
-('Cerasee Tincture',3,6,6,22.25,43,'2025-03-07'),
-('Pet Calm Drops',3,4,9,19.99,41,'2025-03-08'),
-('Kids Cough Drops',3,3,10,17.75,55,'2025-03-09'),
-('Women Tonic Drops',3,1,7,21.75,44,'2025-03-10'),
-('Men Energy Drops',3,2,8,22.50,42,'2025-03-11'),
-('Guinea Hen Weed Extract',3,5,6,24.25,39,'2025-03-12'),
+('Valerian Tincture',3,7,1,21.99,1050,'2025-03-01'),
+('Milk Thistle Tincture',3,6,2,20.99,1100,'2025-03-02'),
+('Ginger Tincture',3,6,3,18.75,1200,'2025-03-03'),
+('Nettle Tincture',3,10,4,19.25,1150,'2025-03-04'),
+('Dandelion Tincture',3,6,5,18.50,1200,'2025-03-05'),
+('Soursop Tincture',3,10,6,23.50,950,'2025-03-06'),
+('Cerasee Tincture',3,6,6,22.25,950,'2025-03-07'),
+('Pet Calm Drops',3,4,9,19.99,1000,'2025-03-08'),
+('Kids Cough Drops',3,3,10,17.75,1100,'2025-03-09'),
+('Women Tonic Drops',3,1,7,21.75,950,'2025-03-10'),
+('Men Energy Drops',3,2,8,22.50,950,'2025-03-11'),
+('Guinea Hen Weed Extract',3,5,6,24.25,900,'2025-03-12'),
 
-('Peppermint Oil',4,7,1,14.99,73,'2025-04-01'),
-('Tea Tree Oil',4,8,2,16.25,67,'2025-04-02'),
-('Eucalyptus Oil',4,5,3,15.80,72,'2025-04-03'),
-('Lavender Oil',4,7,4,15.99,70,'2025-04-04'),
-('Frankincense Oil',4,10,5,24.99,34,'2025-04-05'),
-('Lemon Oil',4,10,6,13.75,69,'2025-04-06'),
-('Rosemary Oil',4,9,7,14.50,65,'2025-04-07'),
-('Clove Oil',4,5,8,15.25,60,'2025-04-08'),
-('Oregano Oil',4,5,9,24.99,36,'2025-04-09'),
-('Bergamot Oil',4,7,10,18.99,49,'2025-04-10'),
-('Cedarwood Oil',4,7,1,17.40,52,'2025-04-11'),
-('Skin Relief Oil',4,8,2,19.50,46,'2025-04-12'),
+('Peppermint Oil',4,7,1,14.99,1300,'2025-04-01'),
+('Tea Tree Oil',4,8,2,16.25,1250,'2025-04-02'),
+('Eucalyptus Oil',4,5,3,15.80,1300,'2025-04-03'),
+('Lavender Oil',4,7,4,15.99,1300,'2025-04-04'),
+('Frankincense Oil',4,10,5,24.99,850,'2025-04-05'),
+('Lemon Oil',4,10,6,13.75,1300,'2025-04-06'),
+('Rosemary Oil',4,9,7,14.50,1250,'2025-04-07'),
+('Clove Oil',4,5,8,15.25,1200,'2025-04-08'),
+('Oregano Oil',4,5,9,24.99,850,'2025-04-09'),
+('Bergamot Oil',4,7,10,18.99,1100,'2025-04-10'),
+('Cedarwood Oil',4,7,1,17.40,1150,'2025-04-11'),
+('Skin Relief Oil',4,8,2,19.50,1050,'2025-04-12'),
 
-('Soursop Leaves',5,10,6,12.99,90,'2025-05-01'),
-('Cerasee Leaves',5,6,6,11.99,95,'2025-05-02'),
-('Duck Flower',5,6,6,13.99,66,'2025-05-03'),
-('Guinea Hen Weed Leaves',5,5,6,14.99,62,'2025-05-04'),
-('Fever Grass',5,10,6,9.99,98,'2025-05-05'),
-('Moringa Leaves',5,9,6,10.99,88,'2025-05-06'),
-('Nettle Leaf',5,10,3,8.99,102,'2025-05-07'),
-('Valerian Root',5,7,2,12.99,79,'2025-05-08'),
-('Dandelion Root',5,6,4,9.99,93,'2025-05-09'),
-('Burdock Root',5,6,5,10.75,87,'2025-05-10'),
-('Chamomile Flowers',5,7,1,11.25,84,'2025-05-11'),
-('Red Clover',5,1,7,10.20,89,'2025-05-12'),
+('Soursop Leaves',5,10,6,12.99,1600,'2025-05-01'),
+('Cerasee Leaves',5,6,6,11.99,1650,'2025-05-02'),
+('Duck Flower',5,6,6,13.99,1450,'2025-05-03'),
+('Guinea Hen Weed Leaves',5,5,6,14.99,1400,'2025-05-04'),
+('Fever Grass',5,10,6,9.99,1700,'2025-05-05'),
+('Moringa Leaves',5,9,6,10.99,1600,'2025-05-06'),
+('Nettle Leaf',5,10,3,8.99,1750,'2025-05-07'),
+('Valerian Root',5,7,2,12.99,1450,'2025-05-08'),
+('Dandelion Root',5,6,4,9.99,1650,'2025-05-09'),
+('Burdock Root',5,6,5,10.75,1550,'2025-05-10'),
+('Chamomile Flowers',5,7,1,11.25,1550,'2025-05-11'),
+('Red Clover',5,1,7,10.20,1550,'2025-05-12'),
 
-('Turmeric Powder',6,6,6,11.25,86,'2025-06-01'),
-('Moringa Powder',6,9,1,13.99,73,'2025-06-02'),
-('Maca Powder',6,9,2,15.50,68,'2025-06-03'),
-('Spirulina Powder',6,9,3,16.75,64,'2025-06-04'),
-('Chlorella Powder',6,10,4,17.25,61,'2025-06-05'),
-('Ashwagandha Powder',6,7,5,14.80,70,'2025-06-06'),
-('Beet Root Powder',6,1,6,12.50,82,'2025-06-07'),
-('Baobab Powder',6,10,7,18.40,55,'2025-06-08'),
-('Amla Powder',6,10,8,13.60,74,'2025-06-09'),
-('Matcha Green Powder',6,9,9,22.50,44,'2025-06-10'),
-('Cerasee Powder Blend',6,6,6,16.20,58,'2025-06-11'),
-('Gut Cleanse Powder',6,6,10,18.99,53,'2025-06-12'),
+('Turmeric Powder',6,6,6,11.25,1550,'2025-06-01'),
+('Moringa Powder',6,9,1,13.99,1450,'2025-06-02'),
+('Maca Powder',6,9,2,15.50,1350,'2025-06-03'),
+('Spirulina Powder',6,9,3,16.75,1300,'2025-06-04'),
+('Chlorella Powder',6,10,4,17.25,1250,'2025-06-05'),
+('Ashwagandha Powder',6,7,5,14.80,1400,'2025-06-06'),
+('Beet Root Powder',6,1,6,12.50,1500,'2025-06-07'),
+('Baobab Powder',6,10,7,18.40,1200,'2025-06-08'),
+('Amla Powder',6,10,8,13.60,1450,'2025-06-09'),
+('Matcha Green Powder',6,9,9,22.50,1000,'2025-06-10'),
+('Cerasee Powder Blend',6,6,6,16.20,1300,'2025-06-11'),
+('Gut Cleanse Powder',6,6,10,18.99,1150,'2025-06-12'),
 
-('Elderberry Syrup',7,5,1,19.99,67,'2025-07-01'),
-('Kids Herbal Syrup',7,3,2,14.50,75,'2025-07-02'),
-('Mullein Syrup',7,5,3,16.99,72,'2025-07-03'),
-('Cherry Bark Syrup',7,5,4,17.50,69,'2025-07-04'),
-('Ginger Honey Syrup',7,6,5,15.75,70,'2025-07-05'),
-('Thyme Cough Syrup',7,5,6,17.99,68,'2025-07-06'),
-('Lemon Ginger Syrup',7,6,7,16.50,73,'2025-07-07'),
-('Immune Boost Syrup',7,5,8,19.20,65,'2025-07-08'),
-('Women Iron Syrup',7,1,9,18.75,58,'2025-07-09'),
-('Men Vitality Syrup',7,2,10,19.50,56,'2025-07-10'),
-('Pet Wellness Syrup',7,4,5,17.25,49,'2025-07-11'),
-('Soursop Leaf Syrup',7,10,6,18.60,54,'2025-07-12'),
+('Elderberry Syrup',7,5,1,19.99,1200,'2025-07-01'),
+('Kids Herbal Syrup',7,3,2,14.50,1450,'2025-07-02'),
+('Mullein Syrup',7,5,3,16.99,1300,'2025-07-03'),
+('Cherry Bark Syrup',7,5,4,17.50,1250,'2025-07-04'),
+('Ginger Honey Syrup',7,6,5,15.75,1300,'2025-07-05'),
+('Thyme Cough Syrup',7,5,6,17.99,1250,'2025-07-06'),
+('Lemon Ginger Syrup',7,6,7,16.50,1300,'2025-07-07'),
+('Immune Boost Syrup',7,5,8,19.20,1150,'2025-07-08'),
+('Women Iron Syrup',7,1,9,18.75,1150,'2025-07-09'),
+('Men Vitality Syrup',7,2,10,19.50,1100,'2025-07-10'),
+('Pet Wellness Syrup',7,4,5,17.25,1000,'2025-07-11'),
+('Soursop Leaf Syrup',7,10,6,18.60,1050,'2025-07-12'),
 
-('Calendula Balm',8,8,8,13.49,71,'2025-08-01'),
-('Arnica Balm',8,8,2,14.25,66,'2025-08-02'),
-('Lavender Balm',8,7,3,11.75,74,'2025-08-03'),
-('Tea Tree Balm',8,8,4,13.50,69,'2025-08-04'),
-('Eucalyptus Chest Balm',8,5,5,15.20,62,'2025-08-05'),
-('Peppermint Muscle Balm',8,9,6,14.60,65,'2025-08-06'),
-('Chamomile Baby Balm',8,3,7,12.40,70,'2025-08-07'),
-('Rosemary Joint Balm',8,2,8,15.80,59,'2025-08-08'),
-('Skin Heal Balm',8,8,9,16.25,57,'2025-08-09'),
-('Cerasee Skin Balm',8,8,6,15.50,52,'2025-08-10'),
-('Men Recovery Balm',8,2,10,16.80,48,'2025-08-11'),
-('Pet Paw Balm',8,4,5,13.95,50,'2025-08-12'),
+('Calendula Balm',8,8,8,13.49,1300,'2025-08-01'),
+('Arnica Balm',8,8,2,14.25,1250,'2025-08-02'),
+('Lavender Balm',8,7,3,11.75,1450,'2025-08-03'),
+('Tea Tree Balm',8,8,4,13.50,1300,'2025-08-04'),
+('Eucalyptus Chest Balm',8,5,5,15.20,1200,'2025-08-05'),
+('Peppermint Muscle Balm',8,9,6,14.60,1250,'2025-08-06'),
+('Chamomile Baby Balm',8,3,7,12.40,1400,'2025-08-07'),
+('Rosemary Joint Balm',8,2,8,15.80,1150,'2025-08-08'),
+('Skin Heal Balm',8,8,9,16.25,1100,'2025-08-09'),
+('Cerasee Skin Balm',8,8,6,15.50,1050,'2025-08-10'),
+('Men Recovery Balm',8,2,10,16.80,1000,'2025-08-11'),
+('Pet Paw Balm',8,4,5,13.95,1000,'2025-08-12'),
 
-('Immune Defense Tablets',9,5,1,24.99,45,'2025-09-01'),
-('Probiotic Support',9,6,2,22.50,47,'2025-09-02'),
-('Iron Support Complex',9,1,3,20.99,56,'2025-09-03'),
-('Calcium D3 Support',9,10,4,19.75,63,'2025-09-04'),
-('Women Multinutrient',9,1,5,23.50,44,'2025-09-05'),
-('Men Multinutrient',9,2,6,23.50,43,'2025-09-06'),
-('Kids Vitamin Drops',9,3,7,18.40,61,'2025-09-07'),
-('Sea Moss Gummies',9,10,6,21.25,58,'2025-09-08'),
-('Gut Health Support',9,6,9,24.50,41,'2025-09-09'),
-('Parasite Cleanse Kit',9,6,10,27.99,38,'2025-09-10'),
-('Pet Daily Support',9,4,5,20.50,42,'2025-09-11'),
-('Respiratory Support Blend',9,5,8,21.75,46,'2025-09-12'),
+('Immune Defense Tablets',9,5,1,24.99,900,'2025-09-01'),
+('Probiotic Support',9,6,2,22.50,950,'2025-09-02'),
+('Iron Support Complex',9,1,3,20.99,1050,'2025-09-03'),
+('Calcium D3 Support',9,10,4,19.75,1150,'2025-09-04'),
+('Women Multinutrient',9,1,5,23.50,900,'2025-09-05'),
+('Men Multinutrient',9,2,6,23.50,900,'2025-09-06'),
+('Kids Vitamin Drops',9,3,7,18.40,1100,'2025-09-07'),
+('Sea Moss Gummies',9,10,6,21.25,1000,'2025-09-08'),
+('Gut Health Support',9,6,9,24.50,850,'2025-09-09'),
+('Parasite Cleanse Kit',9,6,10,27.99,800,'2025-09-10'),
+('Pet Daily Support',9,4,5,20.50,900,'2025-09-11'),
+('Respiratory Support Blend',9,5,8,21.75,900,'2025-09-12'),
 
-('Ginger Digestive Tonic',10,6,10,16.80,73,'2025-10-01'),
-('Iron Boost Tonic',10,1,3,19.25,60,'2025-10-02'),
-('Liver Cleanse Tonic',10,6,4,18.95,57,'2025-10-03'),
-('Women Balance Tonic',10,1,5,21.50,49,'2025-10-04'),
-('Men Power Tonic',10,2,6,22.25,45,'2025-10-05'),
-('Kids Wellness Tonic',10,3,7,15.95,62,'2025-10-06'),
-('Pet Herbal Tonic',10,4,5,18.75,50,'2025-10-07'),
-('Cerasee Detox Tonic',10,6,6,20.50,53,'2025-10-08'),
-('Duck Flower Cleanse Tonic',10,6,6,21.99,39,'2025-10-09'),
-('Soursop Wellness Tonic',10,10,6,22.40,44,'2025-10-10'),
-('Sleep Ease Tonic',10,7,2,18.60,58,'2025-10-11'),
-('Energy Restore Tonic',10,9,1,19.99,55,'2025-10-12');
+('Ginger Digestive Tonic',10,6,10,16.80,1200,'2025-10-01'),
+('Iron Boost Tonic',10,1,3,19.25,1100,'2025-10-02'),
+('Liver Cleanse Tonic',10,6,4,18.95,1100,'2025-10-03'),
+('Women Balance Tonic',10,1,5,21.50,950,'2025-10-04'),
+('Men Power Tonic',10,2,6,22.25,900,'2025-10-05'),
+('Kids Wellness Tonic',10,3,7,15.95,1200,'2025-10-06'),
+('Pet Herbal Tonic',10,4,5,18.75,1000,'2025-10-07'),
+('Cerasee Detox Tonic',10,6,6,20.50,950,'2025-10-08'),
+('Duck Flower Cleanse Tonic',10,6,6,21.99,900,'2025-10-09'),
+('Soursop Wellness Tonic',10,10,6,22.40,900,'2025-10-10'),
+('Sleep Ease Tonic',10,7,2,18.60,1050,'2025-10-11'),
+('Energy Restore Tonic',10,9,1,19.99,1000,'2025-10-12');
 
 -- =========================================
--- ORDERS (2,400 total)
+-- HELPER TABLES
+-- =========================================
+CREATE TEMPORARY TABLE Seq150 (n INT PRIMARY KEY);
+
+INSERT INTO Seq150 (n)
+SELECT a.n + b.n * 10 + c.n * 100 + 1
+FROM
+    (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+     UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) a
+CROSS JOIN
+    (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+     UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) b
+CROSS JOIN
+    (SELECT 0 AS n UNION ALL SELECT 1) c
+WHERE a.n + b.n * 10 + c.n * 100 + 1 <= 150;
+
+CREATE TEMPORARY TABLE StorePlan (
+    LocationID INT PRIMARY KEY,
+    Tier VARCHAR(10),
+    BaseOrders DECIMAL(10,2)
+);
+
+INSERT INTO StorePlan (LocationID, Tier, BaseOrders) VALUES
+(1,'HIGH',96),
+(2,'HIGH',100),
+(4,'HIGH',94),
+(5,'HIGH',98),
+(10,'HIGH',102),
+(3,'MID',52),
+(6,'MID',55),
+(7,'MID',50),
+(8,'LOW',28),
+(9,'LOW',25);
+
+CREATE TEMPORARY TABLE YearPlan (
+    OrderYear INT PRIMARY KEY,
+    YearFactor DECIMAL(10,2)
+);
+
+INSERT INTO YearPlan (OrderYear, YearFactor) VALUES
+(2024,0.95),
+(2025,1.00),
+(2026,1.08);
+
+CREATE TEMPORARY TABLE MonthPlan (
+    OrderMonth INT PRIMARY KEY,
+    MonthFactor DECIMAL(10,2)
+);
+
+INSERT INTO MonthPlan (OrderMonth, MonthFactor) VALUES
+(1,0.88),
+(2,0.90),
+(3,1.00),
+(4,1.00),
+(5,1.05),
+(6,1.08),
+(7,1.10),
+(8,1.15),
+(9,1.00),
+(10,1.02),
+(11,1.08),
+(12,1.18);
+
+CREATE TEMPORARY TABLE MonthlyQuota AS
+SELECT
+    Y.OrderYear,
+    M.OrderMonth,
+    S.LocationID,
+    S.Tier,
+    ROUND(S.BaseOrders * Y.YearFactor * M.MonthFactor, 0) AS OrdersInMonth
+FROM YearPlan Y
+CROSS JOIN MonthPlan M
+JOIN StorePlan S;
+
+-- =========================================
+-- ORDERS
+-- Employee assignment logic:
+-- 45% pharmacist of that location
+-- 35% assistant of that location
+-- 20% rotating doctor
 -- =========================================
 INSERT INTO Orders (CustomerID, EmployeeID, LocationID, OrderDate, TotalAmount)
 SELECT
-    ((n - 1) % 108) + 1 AS CustomerID,
-    ((n - 1) % 10) + 1 AS EmployeeID,
-    ((n - 1) % 10) + 1 AS LocationID,
+    ((Q.LocationID * 31 + Q.OrderMonth * 17 + Q.OrderYear + S.n * 13) % 108) + 1 AS CustomerID,
+    CASE
+        WHEN (S.n % 10) < 5 THEN Q.LocationID
+        WHEN (S.n % 10) < 8 THEN Q.LocationID + 10
+        ELSE 21 + ((Q.LocationID + Q.OrderMonth + S.n) % 4)
+    END AS EmployeeID,
+    Q.LocationID,
     STR_TO_DATE(
         CONCAT(
-            '2026-',
-            LPAD(FLOOR((n - 1) / 200) + 1, 2, '0'),
-            '-',
-            LPAD(((n * 7) % 28) + 1, 2, '0')
+            Q.OrderYear, '-',
+            LPAD(Q.OrderMonth, 2, '0'), '-',
+            LPAD(((S.n * 7 + Q.LocationID * 3) % 28) + 1, 2, '0')
         ),
         '%Y-%m-%d'
-    ) AS OrderDate,
-    0.00 AS TotalAmount
-FROM (
-    SELECT ones.n + tens.n * 10 + hundreds.n * 100 + thousands.n * 1000 + 1 AS n
-    FROM
-        (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
-         UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) ones
-    CROSS JOIN
-        (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
-         UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) tens
-    CROSS JOIN
-        (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
-         UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) hundreds
-    CROSS JOIN
-        (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2) thousands
-) nums
-WHERE n <= 2400
-ORDER BY n;
+    ),
+    0.00
+FROM MonthlyQuota Q
+JOIN Seq150 S
+    ON S.n <= Q.OrdersInMonth
+ORDER BY Q.OrderYear, Q.OrderMonth, Q.LocationID, S.n;
 
 -- =========================================
--- ORDER DETAILS (3 items per order)
+-- ORDER DETAILS
+-- 4 standard lines per order + optional 5th
 -- =========================================
+
 INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
 SELECT
     O.OrderID,
-    ((O.OrderID * 7) % 120) + 1 AS ProductID,
-    2 AS Quantity,
+    ((O.OrderID * 7) % 120) + 1,
+    CASE
+        WHEN O.LocationID IN (1,2,4,5,10) THEN 3 + (O.OrderID % 3)
+        WHEN O.LocationID IN (3,6,7) THEN 2 + (O.OrderID % 2)
+        ELSE 1 + (O.OrderID % 2)
+    END,
     P.UnitPrice
 FROM Orders O
 JOIN Products P
-    ON P.ProductID = ((O.OrderID * 7) % 120) + 1;
+  ON P.ProductID = ((O.OrderID * 7) % 120) + 1;
 
 INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
 SELECT
@@ -377,16 +470,20 @@ SELECT
         WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
         THEN ((((O.OrderID * 13) + 18) % 120) + 1)
         ELSE (((O.OrderID * 13) + 17) % 120) + 1
-    END AS ProductID,
-    1 AS Quantity,
+    END,
+    CASE
+        WHEN O.LocationID IN (1,2,4,5,10) THEN 2 + (O.OrderID % 3)
+        WHEN O.LocationID IN (3,6,7) THEN 2 + (O.OrderID % 2)
+        ELSE 1 + (O.OrderID % 2)
+    END,
     P.UnitPrice
 FROM Orders O
 JOIN Products P
-    ON P.ProductID = CASE
+  ON P.ProductID = CASE
         WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
         THEN ((((O.OrderID * 13) + 18) % 120) + 1)
         ELSE (((O.OrderID * 13) + 17) % 120) + 1
-    END;
+     END;
 
 INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
 SELECT
@@ -402,15 +499,16 @@ SELECT
         )
         THEN ((((O.OrderID * 19) + 31) % 120) + 1)
         ELSE (((O.OrderID * 19) + 29) % 120) + 1
-    END AS ProductID,
+    END,
     CASE
-        WHEN O.OrderID % 3 = 0 THEN 2
+        WHEN O.LocationID IN (1,2,4,5,10) THEN 2 + (O.OrderID % 2)
+        WHEN O.LocationID IN (3,6,7) THEN 1 + (O.OrderID % 2)
         ELSE 1
-    END AS Quantity,
+    END,
     P.UnitPrice
 FROM Orders O
 JOIN Products P
-    ON P.ProductID = CASE
+  ON P.ProductID = CASE
         WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
             ((O.OrderID * 7) % 120) + 1,
             CASE
@@ -421,7 +519,103 @@ JOIN Products P
         )
         THEN ((((O.OrderID * 19) + 31) % 120) + 1)
         ELSE (((O.OrderID * 19) + 29) % 120) + 1
-    END;
+     END;
+
+INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
+SELECT
+    O.OrderID,
+    CASE
+        WHEN (((O.OrderID * 23) + 41) % 120) + 1 IN (
+            ((O.OrderID * 7) % 120) + 1,
+            CASE
+                WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
+                THEN ((((O.OrderID * 13) + 18) % 120) + 1)
+                ELSE (((O.OrderID * 13) + 17) % 120) + 1
+            END,
+            CASE
+                WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
+                    ((O.OrderID * 7) % 120) + 1,
+                    CASE
+                        WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
+                        THEN ((((O.OrderID * 13) + 18) % 120) + 1)
+                        ELSE (((O.OrderID * 13) + 17) % 120) + 1
+                    END
+                )
+                THEN ((((O.OrderID * 19) + 31) % 120) + 1)
+                ELSE (((O.OrderID * 19) + 29) % 120) + 1
+            END
+        )
+        THEN ((((O.OrderID * 23) + 43) % 120) + 1)
+        ELSE (((O.OrderID * 23) + 41) % 120) + 1
+    END,
+    CASE
+        WHEN O.LocationID IN (1,2,4,5,10) THEN 1 + (O.OrderID % 2)
+        WHEN O.LocationID IN (3,6,7) THEN 1 + (O.OrderID % 2)
+        ELSE 1
+    END,
+    P.UnitPrice
+FROM Orders O
+JOIN Products P
+  ON P.ProductID = CASE
+        WHEN (((O.OrderID * 23) + 41) % 120) + 1 IN (
+            ((O.OrderID * 7) % 120) + 1,
+            CASE
+                WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
+                THEN ((((O.OrderID * 13) + 18) % 120) + 1)
+                ELSE (((O.OrderID * 13) + 17) % 120) + 1
+            END,
+            CASE
+                WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
+                    ((O.OrderID * 7) % 120) + 1,
+                    CASE
+                        WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
+                        THEN ((((O.OrderID * 13) + 18) % 120) + 1)
+                        ELSE (((O.OrderID * 13) + 17) % 120) + 1
+                    END
+                )
+                THEN ((((O.OrderID * 19) + 31) % 120) + 1)
+                ELSE (((O.OrderID * 19) + 29) % 120) + 1
+            END
+        )
+        THEN ((((O.OrderID * 23) + 43) % 120) + 1)
+        ELSE (((O.OrderID * 23) + 41) % 120) + 1
+     END;
+
+INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
+SELECT
+    O.OrderID,
+    CASE
+        WHEN (((O.OrderID * 29) + 53) % 120) + 1 IN (
+            ((O.OrderID * 7) % 120) + 1,
+            (((O.OrderID * 13) + 17) % 120) + 1,
+            (((O.OrderID * 19) + 29) % 120) + 1,
+            (((O.OrderID * 23) + 41) % 120) + 1
+        )
+        THEN ((((O.OrderID * 29) + 57) % 120) + 1)
+        ELSE (((O.OrderID * 29) + 53) % 120) + 1
+    END,
+    CASE
+        WHEN O.LocationID IN (1,2,4,5,10) THEN 1 + (O.OrderID % 2)
+        WHEN O.LocationID IN (3,6,7) THEN 1
+        ELSE 1
+    END,
+    P.UnitPrice
+FROM Orders O
+JOIN Products P
+  ON P.ProductID = CASE
+        WHEN (((O.OrderID * 29) + 53) % 120) + 1 IN (
+            ((O.OrderID * 7) % 120) + 1,
+            (((O.OrderID * 13) + 17) % 120) + 1,
+            (((O.OrderID * 19) + 29) % 120) + 1,
+            (((O.OrderID * 23) + 41) % 120) + 1
+        )
+        THEN ((((O.OrderID * 29) + 57) % 120) + 1)
+        ELSE (((O.OrderID * 29) + 53) % 120) + 1
+     END
+WHERE
+    (O.LocationID IN (1,2,4,5,10) AND O.OrderID % 2 = 0)
+    OR (O.LocationID IN (3,6,7) AND O.OrderID % 3 = 0)
+    OR (O.LocationID IN (8,9) AND O.OrderID % 5 = 0);
 
 -- =========================================
 -- RETURNS
@@ -429,19 +623,20 @@ JOIN Products P
 INSERT INTO Returns (OrderDetailID, ReturnDate, ReturnQuantity, ReturnReason, RefundAmount)
 SELECT
     OD.OrderDetailID,
-    DATE_ADD(O.OrderDate, INTERVAL 7 DAY) AS ReturnDate,
-    1 AS ReturnQuantity,
+    DATE_ADD(O.OrderDate, INTERVAL ((OD.OrderDetailID % 10) + 5) DAY),
+    1,
     CASE
-        WHEN OD.OrderDetailID % 4 = 0 THEN 'Customer changed mind'
-        WHEN OD.OrderDetailID % 4 = 1 THEN 'Did not work'
-        WHEN OD.OrderDetailID % 4 = 2 THEN 'Wrong product'
-        ELSE 'Damaged item'
-    END AS ReturnReason,
-    OD.SalePrice AS RefundAmount
+        WHEN OD.OrderDetailID % 5 = 0 THEN 'Customer changed mind'
+        WHEN OD.OrderDetailID % 5 = 1 THEN 'Did not work'
+        WHEN OD.OrderDetailID % 5 = 2 THEN 'Wrong product'
+        WHEN OD.OrderDetailID % 5 = 3 THEN 'Damaged item'
+        ELSE 'Sensitivity / reaction'
+    END,
+    OD.SalePrice
 FROM OrderDetails OD
 JOIN Orders O
-    ON OD.OrderID = O.OrderID
-WHERE OD.OrderDetailID % 50 = 0;
+  ON O.OrderID = OD.OrderID
+WHERE OD.OrderDetailID % 70 = 0;
 
 -- =========================================
 -- UPDATE ORDER TOTALS
@@ -454,30 +649,32 @@ JOIN (
     FROM OrderDetails
     GROUP BY OrderID
 ) X
-    ON O.OrderID = X.OrderID
+  ON O.OrderID = X.OrderID
 SET O.TotalAmount = X.NewTotal;
 
 -- =========================================
--- STOCK UPDATE
+-- STOCK UPDATE: SUBTRACT SOLD
 -- =========================================
-UPDATE Products P
-JOIN (
-    SELECT ProductID, SUM(Quantity) AS SoldQty
-    FROM OrderDetails
-    GROUP BY ProductID
-) S
-    ON P.ProductID = S.ProductID
-SET P.StockQuantity = GREATEST(P.StockQuantity - S.SoldQty, 0)
-WHERE P.ProductID > 0;
+UPDATE Products
+SET StockQuantity = GREATEST(
+    StockQuantity - (
+        SELECT IFNULL(SUM(OD.Quantity), 0)
+        FROM OrderDetails OD
+        WHERE OD.ProductID = Products.ProductID
+    ),
+    0
+)
+WHERE ProductID > 0;
 
-UPDATE Products P
-JOIN (
-    SELECT OD.ProductID, SUM(R.ReturnQuantity) AS ReturnedQty
+-- =========================================
+-- STOCK UPDATE: ADD BACK RETURNS
+-- =========================================
+UPDATE Products
+SET StockQuantity = StockQuantity + (
+    SELECT IFNULL(SUM(R.ReturnQuantity), 0)
     FROM Returns R
     JOIN OrderDetails OD
-        ON R.OrderDetailID = OD.OrderDetailID
-    GROUP BY OD.ProductID
-) RT
-    ON P.ProductID = RT.ProductID
-SET P.StockQuantity = P.StockQuantity + RT.ReturnedQty
-WHERE P.ProductID > 0;
+      ON R.OrderDetailID = OD.OrderDetailID
+    WHERE OD.ProductID = Products.ProductID
+)
+WHERE ProductID > 0;
