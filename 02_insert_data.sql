@@ -1,4 +1,4 @@
-USE RootedEarthDB;
+USE rootedearthdb;
 
 -- =========================================
 -- LOCATIONS
@@ -339,12 +339,14 @@ INSERT INTO Products (ProductName, CategoryID, DepartmentID, SupplierID, UnitPri
 ('Sleep Ease Tonic',10,7,2,18.60,1050,'2025-10-11'),
 ('Energy Restore Tonic',10,9,1,19.99,1000,'2025-10-12');
 
+
 -- =========================================
 -- HELPER TABLES
 -- =========================================
-CREATE TEMPORARY TABLE Seq150 (n INT PRIMARY KEY);
+DROP TEMPORARY TABLE IF EXISTS Seq200;
+CREATE TEMPORARY TABLE Seq200 (n INT PRIMARY KEY);
 
-INSERT INTO Seq150 (n)
+INSERT INTO Seq200 (n)
 SELECT a.n + b.n * 10 + c.n * 100 + 1
 FROM
     (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
@@ -354,8 +356,9 @@ CROSS JOIN
      UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) b
 CROSS JOIN
     (SELECT 0 AS n UNION ALL SELECT 1) c
-WHERE a.n + b.n * 10 + c.n * 100 + 1 <= 150;
+WHERE a.n + b.n * 10 + c.n * 100 + 1 <= 200;
 
+DROP TEMPORARY TABLE IF EXISTS StorePlan;
 CREATE TEMPORARY TABLE StorePlan (
     LocationID INT PRIMARY KEY,
     Tier VARCHAR(10),
@@ -374,6 +377,7 @@ INSERT INTO StorePlan (LocationID, Tier, BaseOrders) VALUES
 (8,'LOW',28),
 (9,'LOW',25);
 
+DROP TEMPORARY TABLE IF EXISTS YearPlan;
 CREATE TEMPORARY TABLE YearPlan (
     OrderYear INT PRIMARY KEY,
     YearFactor DECIMAL(10,2)
@@ -384,6 +388,7 @@ INSERT INTO YearPlan (OrderYear, YearFactor) VALUES
 (2025,1.00),
 (2026,1.08);
 
+DROP TEMPORARY TABLE IF EXISTS MonthPlan;
 CREATE TEMPORARY TABLE MonthPlan (
     OrderMonth INT PRIMARY KEY,
     MonthFactor DECIMAL(10,2)
@@ -403,6 +408,7 @@ INSERT INTO MonthPlan (OrderMonth, MonthFactor) VALUES
 (11,1.08),
 (12,1.18);
 
+DROP TEMPORARY TABLE IF EXISTS MonthlyQuota;
 CREATE TEMPORARY TABLE MonthlyQuota AS
 SELECT
     Y.OrderYear,
@@ -440,203 +446,207 @@ SELECT
     ),
     0.00
 FROM MonthlyQuota Q
-JOIN Seq150 S
+JOIN Seq200 S
     ON S.n <= Q.OrdersInMonth
 ORDER BY Q.OrderYear, Q.OrderMonth, Q.LocationID, S.n;
 
 -- =========================================
--- ORDER DETAILS
--- 4 standard lines per order + optional 5th
+-- ORDER LINE PLAN
+-- Most orders: 2-4 items
+-- Some small baskets, some larger baskets
 -- =========================================
-
-INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
+DROP TEMPORARY TABLE IF EXISTS OrderLinePlan;
+CREATE TEMPORARY TABLE OrderLinePlan AS
 SELECT
     O.OrderID,
-    ((O.OrderID * 7) % 120) + 1,
+    O.LocationID,
     CASE
-        WHEN O.LocationID IN (1,2,4,5,10) THEN 3 + (O.OrderID % 3)
-        WHEN O.LocationID IN (3,6,7) THEN 2 + (O.OrderID % 2)
-        ELSE 1 + (O.OrderID % 2)
-    END,
-    P.UnitPrice
-FROM Orders O
-JOIN Products P
-  ON P.ProductID = ((O.OrderID * 7) % 120) + 1;
+        WHEN O.OrderID % 29 = 0 THEN 6
+        WHEN O.OrderID % 11 = 0 THEN 5
+        WHEN O.OrderID % 5 = 0 THEN 2
+        WHEN O.OrderID % 3 = 0 THEN 3
+        ELSE 4
+    END AS LineCount
+FROM Orders O;
 
+-- =========================================
+-- PRODUCT POOLS
+-- Elite = biggest sellers
+-- High  = strong sellers
+-- Mid   = regular sellers
+-- Low   = long-tail / niche
+-- =========================================
+DROP TEMPORARY TABLE IF EXISTS TierElite;
+CREATE TEMPORARY TABLE TierElite (
+    rn INT AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL
+);
+
+INSERT INTO TierElite (ProductID)
+SELECT ProductID
+FROM Products
+WHERE ProductName IN (
+    'Moringa Tea',
+    'Sea Moss Capsules',
+    'Chlorella Powder'
+)
+ORDER BY ProductID;
+
+DROP TEMPORARY TABLE IF EXISTS TierHigh;
+CREATE TEMPORARY TABLE TierHigh (
+    rn INT AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL
+);
+
+INSERT INTO TierHigh (ProductID)
+SELECT ProductID
+FROM Products
+WHERE ProductName IN (
+    'Sea Moss Gummies',
+    'Moringa Leaves',
+    'Soursop Wellness Tonic',
+    'Elderberry Syrup',
+    'Men Recovery Balm'
+)
+ORDER BY ProductID;
+
+DROP TEMPORARY TABLE IF EXISTS TierMid;
+CREATE TEMPORARY TABLE TierMid (
+    rn INT AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL
+);
+
+INSERT INTO TierMid (ProductID)
+SELECT ProductID
+FROM Products
+WHERE ProductName IN (
+    'Soursop Leaves',
+    'Elderberry Capsules',
+    'Moringa Powder',
+    'Soursop Leaf Tea',
+    'Immune Boost Syrup',
+    'Turmeric Powder',
+    'Chamomile Tea',
+    'Cerasee Detox Tea',
+    'Moringa Capsules',
+    'Soursop Tincture'
+)
+ORDER BY ProductID;
+
+DROP TEMPORARY TABLE IF EXISTS TierLow;
+CREATE TEMPORARY TABLE TierLow (
+    rn INT AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL
+);
+
+INSERT INTO TierLow (ProductID)
+SELECT ProductID
+FROM Products
+WHERE ProductID NOT IN (
+    SELECT ProductID FROM TierElite
+    UNION
+    SELECT ProductID FROM TierHigh
+    UNION
+    SELECT ProductID FROM TierMid
+)
+ORDER BY ProductID;
+
+DROP TEMPORARY TABLE IF EXISTS TierCounts;
+CREATE TEMPORARY TABLE TierCounts AS
+SELECT
+    (SELECT COUNT(*) FROM TierElite) AS EliteCount,
+    (SELECT COUNT(*) FROM TierHigh)  AS HighCount,
+    (SELECT COUNT(*) FROM TierMid)   AS MidCount,
+    (SELECT COUNT(*) FROM TierLow)   AS LowCount;
+
+DROP TEMPORARY TABLE IF EXISTS OrderLineSeed;
+CREATE TEMPORARY TABLE OrderLineSeed AS
+SELECT
+    OLP.OrderID,
+    OLP.LocationID,
+    S.n AS LineNo,
+    ((OLP.OrderID * 17) + (OLP.LocationID * 13) + (S.n * 7)) % 100 AS BucketCode,
+    ((OLP.OrderID * 5) + (S.n * 11) + OLP.LocationID) AS Seed1,
+    ((OLP.OrderID * 7) + (S.n * 13) + OLP.LocationID) AS Seed2,
+    ((OLP.OrderID * 11) + (S.n * 17) + OLP.LocationID) AS Seed3,
+    ((OLP.OrderID * 13) + (S.n * 19) + OLP.LocationID) AS Seed4
+FROM OrderLinePlan OLP
+JOIN Seq200 S
+  ON S.n <= OLP.LineCount;
+
+-- =========================================
+-- ORDER DETAILS
+-- Distribution target:
+-- Elite products dominate
+-- High products are strong
+-- Mid products are noticeable
+-- Low products create the long tail
+-- =========================================
 INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
 SELECT
-    O.OrderID,
+    S.OrderID,
+    COALESCE(E.ProductID, H.ProductID, M.ProductID, L.ProductID) AS ProductID,
     CASE
-        WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-        THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-        ELSE (((O.OrderID * 13) + 17) % 120) + 1
-    END,
-    CASE
-        WHEN O.LocationID IN (1,2,4,5,10) THEN 2 + (O.OrderID % 3)
-        WHEN O.LocationID IN (3,6,7) THEN 2 + (O.OrderID % 2)
-        ELSE 1 + (O.OrderID % 2)
-    END,
-    P.UnitPrice
-FROM Orders O
-JOIN Products P
-  ON P.ProductID = CASE
-        WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-        THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-        ELSE (((O.OrderID * 13) + 17) % 120) + 1
-     END;
-
-INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
-SELECT
-    O.OrderID,
-    CASE
-        WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
-            ((O.OrderID * 7) % 120) + 1,
-            CASE
-                WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-                THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-                ELSE (((O.OrderID * 13) + 17) % 120) + 1
-            END
-        )
-        THEN ((((O.OrderID * 19) + 31) % 120) + 1)
-        ELSE (((O.OrderID * 19) + 29) % 120) + 1
-    END,
-    CASE
-        WHEN O.LocationID IN (1,2,4,5,10) THEN 2 + (O.OrderID % 2)
-        WHEN O.LocationID IN (3,6,7) THEN 1 + (O.OrderID % 2)
+        WHEN (S.OrderID + S.LineNo) % 37 = 0 THEN 7
+        WHEN (S.OrderID + S.LineNo) % 19 = 0 THEN 5
+        WHEN (S.OrderID + S.LineNo) % 9 = 0 THEN 4
+        WHEN (S.OrderID + S.LineNo) % 4 = 0 THEN 3
+        WHEN S.LocationID IN (1,2,4,5,10) THEN 2
         ELSE 1
-    END,
+    END AS Quantity,
     P.UnitPrice
-FROM Orders O
+FROM OrderLineSeed S
+CROSS JOIN TierCounts C
+LEFT JOIN TierElite E
+    ON S.BucketCode < 30
+   AND E.rn = (S.Seed1 % C.EliteCount) + 1
+LEFT JOIN TierHigh H
+    ON S.BucketCode >= 30 AND S.BucketCode < 52
+   AND H.rn = (S.Seed2 % C.HighCount) + 1
+LEFT JOIN TierMid M
+    ON S.BucketCode >= 52 AND S.BucketCode < 75
+   AND M.rn = (S.Seed3 % C.MidCount) + 1
+LEFT JOIN TierLow L
+    ON S.BucketCode >= 75
+   AND L.rn = (S.Seed4 % C.LowCount) + 1
 JOIN Products P
-  ON P.ProductID = CASE
-        WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
-            ((O.OrderID * 7) % 120) + 1,
-            CASE
-                WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-                THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-                ELSE (((O.OrderID * 13) + 17) % 120) + 1
-            END
-        )
-        THEN ((((O.OrderID * 19) + 31) % 120) + 1)
-        ELSE (((O.OrderID * 19) + 29) % 120) + 1
-     END;
+    ON P.ProductID = COALESCE(E.ProductID, H.ProductID, M.ProductID, L.ProductID);
 
-INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
-SELECT
-    O.OrderID,
-    CASE
-        WHEN (((O.OrderID * 23) + 41) % 120) + 1 IN (
-            ((O.OrderID * 7) % 120) + 1,
-            CASE
-                WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-                THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-                ELSE (((O.OrderID * 13) + 17) % 120) + 1
-            END,
-            CASE
-                WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
-                    ((O.OrderID * 7) % 120) + 1,
-                    CASE
-                        WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-                        THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-                        ELSE (((O.OrderID * 13) + 17) % 120) + 1
-                    END
-                )
-                THEN ((((O.OrderID * 19) + 31) % 120) + 1)
-                ELSE (((O.OrderID * 19) + 29) % 120) + 1
-            END
-        )
-        THEN ((((O.OrderID * 23) + 43) % 120) + 1)
-        ELSE (((O.OrderID * 23) + 41) % 120) + 1
-    END,
-    CASE
-        WHEN O.LocationID IN (1,2,4,5,10) THEN 1 + (O.OrderID % 2)
-        WHEN O.LocationID IN (3,6,7) THEN 1 + (O.OrderID % 2)
-        ELSE 1
-    END,
-    P.UnitPrice
-FROM Orders O
-JOIN Products P
-  ON P.ProductID = CASE
-        WHEN (((O.OrderID * 23) + 41) % 120) + 1 IN (
-            ((O.OrderID * 7) % 120) + 1,
-            CASE
-                WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-                THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-                ELSE (((O.OrderID * 13) + 17) % 120) + 1
-            END,
-            CASE
-                WHEN (((O.OrderID * 19) + 29) % 120) + 1 IN (
-                    ((O.OrderID * 7) % 120) + 1,
-                    CASE
-                        WHEN (((O.OrderID * 13) + 17) % 120) + 1 = (((O.OrderID * 7) % 120) + 1)
-                        THEN ((((O.OrderID * 13) + 18) % 120) + 1)
-                        ELSE (((O.OrderID * 13) + 17) % 120) + 1
-                    END
-                )
-                THEN ((((O.OrderID * 19) + 31) % 120) + 1)
-                ELSE (((O.OrderID * 19) + 29) % 120) + 1
-            END
-        )
-        THEN ((((O.OrderID * 23) + 43) % 120) + 1)
-        ELSE (((O.OrderID * 23) + 41) % 120) + 1
-     END;
-
-INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
-SELECT
-    O.OrderID,
-    CASE
-        WHEN (((O.OrderID * 29) + 53) % 120) + 1 IN (
-            ((O.OrderID * 7) % 120) + 1,
-            (((O.OrderID * 13) + 17) % 120) + 1,
-            (((O.OrderID * 19) + 29) % 120) + 1,
-            (((O.OrderID * 23) + 41) % 120) + 1
-        )
-        THEN ((((O.OrderID * 29) + 57) % 120) + 1)
-        ELSE (((O.OrderID * 29) + 53) % 120) + 1
-    END,
-    CASE
-        WHEN O.LocationID IN (1,2,4,5,10) THEN 1 + (O.OrderID % 2)
-        WHEN O.LocationID IN (3,6,7) THEN 1
-        ELSE 1
-    END,
-    P.UnitPrice
-FROM Orders O
-JOIN Products P
-  ON P.ProductID = CASE
-        WHEN (((O.OrderID * 29) + 53) % 120) + 1 IN (
-            ((O.OrderID * 7) % 120) + 1,
-            (((O.OrderID * 13) + 17) % 120) + 1,
-            (((O.OrderID * 19) + 29) % 120) + 1,
-            (((O.OrderID * 23) + 41) % 120) + 1
-        )
-        THEN ((((O.OrderID * 29) + 57) % 120) + 1)
-        ELSE (((O.OrderID * 29) + 53) % 120) + 1
-     END
-WHERE
-    (O.LocationID IN (1,2,4,5,10) AND O.OrderID % 2 = 0)
-    OR (O.LocationID IN (3,6,7) AND O.OrderID % 3 = 0)
-    OR (O.LocationID IN (8,9) AND O.OrderID % 5 = 0);
+-- Remove duplicate product lines inside the same order
+DELETE OD1
+FROM OrderDetails OD1
+JOIN OrderDetails OD2
+  ON OD1.OrderID = OD2.OrderID
+ AND OD1.ProductID = OD2.ProductID
+ AND OD1.OrderDetailID > OD2.OrderDetailID;
 
 -- =========================================
 -- RETURNS
+-- Rare but realistic
 -- =========================================
 INSERT INTO Returns (OrderDetailID, ReturnDate, ReturnQuantity, ReturnReason, RefundAmount)
 SELECT
     OD.OrderDetailID,
-    DATE_ADD(O.OrderDate, INTERVAL ((OD.OrderDetailID % 10) + 5) DAY),
-    1,
+    DATE_ADD(O.OrderDate, INTERVAL ((OD.OrderDetailID % 12) + 3) DAY),
+    CASE
+        WHEN OD.Quantity >= 5 AND OD.OrderDetailID % 4 = 0 THEN 2
+        ELSE 1
+    END AS ReturnQuantity,
     CASE
         WHEN OD.OrderDetailID % 5 = 0 THEN 'Customer changed mind'
         WHEN OD.OrderDetailID % 5 = 1 THEN 'Did not work'
         WHEN OD.OrderDetailID % 5 = 2 THEN 'Wrong product'
         WHEN OD.OrderDetailID % 5 = 3 THEN 'Damaged item'
         ELSE 'Sensitivity / reaction'
-    END,
-    OD.SalePrice
+    END AS ReturnReason,
+    CASE
+        WHEN OD.Quantity >= 5 AND OD.OrderDetailID % 4 = 0 THEN ROUND(OD.SalePrice * 2, 2)
+        ELSE OD.SalePrice
+    END AS RefundAmount
 FROM OrderDetails OD
 JOIN Orders O
   ON O.OrderID = OD.OrderID
-WHERE OD.OrderDetailID % 70 = 0;
+WHERE OD.OrderDetailID % 43 = 0;
 
 -- =========================================
 -- UPDATE ORDER TOTALS
