@@ -1,4 +1,4 @@
-USE rootedearthdb;
+use rootedearthdb;
 
 -- =========================================
 -- LOCATIONS
@@ -576,11 +576,6 @@ JOIN Seq200 S
 
 -- =========================================
 -- ORDER DETAILS
--- Distribution target:
--- Elite products dominate
--- High products are strong
--- Mid products are noticeable
--- Low products create the long tail
 -- =========================================
 INSERT INTO OrderDetails (OrderID, ProductID, Quantity, SalePrice)
 SELECT
@@ -613,16 +608,15 @@ JOIN Products P
     ON P.ProductID = COALESCE(E.ProductID, H.ProductID, M.ProductID, L.ProductID);
 
 -- Remove duplicate product lines inside the same order
-DELETE OD1
-FROM OrderDetails OD1
-JOIN OrderDetails OD2
-  ON OD1.OrderID = OD2.OrderID
- AND OD1.ProductID = OD2.ProductID
- AND OD1.OrderDetailID > OD2.OrderDetailID;
+-- DELETE OD1
+-- FROM OrderDetails OD1
+-- JOIN OrderDetails OD2
+-- ON OD1.OrderID = OD2.OrderID
+-- AND OD1.ProductID = OD2.ProductID
+-- AND OD1.OrderDetailID > OD2.OrderDetailID;
 
 -- =========================================
 -- RETURNS
--- Rare but realistic
 -- =========================================
 INSERT INTO Returns (OrderDetailID, ReturnDate, ReturnQuantity, ReturnReason, RefundAmount)
 SELECT
@@ -665,26 +659,67 @@ SET O.TotalAmount = X.NewTotal;
 -- =========================================
 -- STOCK UPDATE: SUBTRACT SOLD
 -- =========================================
-UPDATE Products
-SET StockQuantity = GREATEST(
-    StockQuantity - (
-        SELECT IFNULL(SUM(OD.Quantity), 0)
-        FROM OrderDetails OD
-        WHERE OD.ProductID = Products.ProductID
-    ),
-    0
-)
-WHERE ProductID > 0;
+UPDATE Products P
+JOIN (
+    SELECT ProductID, SUM(Quantity) AS SoldQty
+    FROM OrderDetails
+    GROUP BY ProductID
+) S
+ON P.ProductID = S.ProductID
+SET P.StockQuantity = GREATEST(P.StockQuantity - S.SoldQty, 0);
 
 -- =========================================
 -- STOCK UPDATE: ADD BACK RETURNS
 -- =========================================
-UPDATE Products
-SET StockQuantity = StockQuantity + (
-    SELECT IFNULL(SUM(R.ReturnQuantity), 0)
+UPDATE Products P
+JOIN (
+    SELECT OD.ProductID, SUM(R.ReturnQuantity) AS ReturnedQty
     FROM Returns R
     JOIN OrderDetails OD
-      ON R.OrderDetailID = OD.OrderDetailID
-    WHERE OD.ProductID = Products.ProductID
-)
-WHERE ProductID > 0;
+        ON R.OrderDetailID = OD.OrderDetailID
+    GROUP BY OD.ProductID
+) X
+ON P.ProductID = X.ProductID
+SET P.StockQuantity = P.StockQuantity + X.ReturnedQty;
+
+-- =========================================
+-- VIEWS
+-- =========================================
+-- SALES SUMMARY (Orders + Customers + Location)
+
+CREATE OR REPLACE VIEW sales_summary_view AS
+SELECT 
+    O.OrderID,
+    O.OrderDate,
+    C.FirstName,
+    C.LastName,
+    L.LocationName,
+    O.TotalAmount
+FROM Orders O, Customers C, Locations L
+WHERE O.CustomerID = C.CustomerID
+AND O.LocationID = L.LocationID;
+
+-- =================================================
+-- PRODUCT PERFORMANCE (Total units sold per product)
+-- =================================================
+CREATE OR REPLACE VIEW product_performance_view AS
+SELECT 
+    P.ProductID,
+    P.ProductName,
+    SUM(OD.Quantity) AS TotalUnitsSold,
+    SUM(OD.Quantity * OD.SalePrice) AS TotalRevenue
+FROM Products P, OrderDetails OD
+WHERE P.ProductID = OD.ProductID
+GROUP BY P.ProductID, P.ProductName;
+
+-- ==============================================
+-- MONTHLY REVENUE TREND
+-- ==============================================
+CREATE OR REPLACE VIEW monthly_revenue_view AS
+SELECT 
+    YEAR(OrderDate) AS OrderYear,
+    MONTH(OrderDate) AS OrderMonth,
+    ROUND(SUM(TotalAmount), 2) AS MonthlyRevenue
+FROM Orders
+GROUP BY YEAR(OrderDate), MONTH(OrderDate);
+
