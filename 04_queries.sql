@@ -100,13 +100,12 @@ FROM OrderDetails;
 -- Show revenue by month
 -- Business Value: Tracks monthly performance and identifies trends over time
 -- =========================================
-SELECT 
-    DATE_FORMAT(O.OrderDate, '%Y-%m') AS RevenueMonth,
-    ROUND(SUM(OD.Quantity * OD.SalePrice), 2) AS MonthlyRevenue
-FROM Orders O
-JOIN OrderDetails OD ON O.OrderID = OD.OrderID
-GROUP BY DATE_FORMAT(O.OrderDate, '%Y-%m')
-ORDER BY RevenueMonth;
+SELECT MONTHNAME(OrderDate) AS Month,
+       SUM(TotalAmount) AS TotalRevenue
+FROM orders
+GROUP BY MONTH(OrderDate), MONTHNAME(OrderDate)
+ORDER BY MONTH(OrderDate);
+
 
 -- =========================================
 -- 9. WEEKLY REVENUE
