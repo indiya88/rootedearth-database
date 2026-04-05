@@ -63,115 +63,79 @@ INSERT INTO Departments (DepartmentName) VALUES
 -- =========================================
 -- CUSTOMERS
 -- =========================================
-INSERT INTO Customers (FirstName, LastName, Email, Phone, City, PostalCode, LoyaltyMember, PointsBalance) VALUES
-('Alicia','Brown','alicia.brown@email.com','6475553001','Toronto','M5V1A1','Yes',120),
-('Brandon','Lee','brandon.lee@email.com','6475553002','Mississauga','L5B2T3','Yes',85),
-('Cynthia','Morgan','cynthia.morgan@email.com','6475553003','Brampton','L6T4K5','Yes',60),
-('Elena','Price','elena.price@email.com','6475553004','Toronto','M4P2X8','Yes',95),
-('Farah','Ali','farah.ali@email.com','6475553005','Vaughan','L4K3C2','Yes',200),
-('Grace','Wilson','grace.wilson@email.com','6475553006','Ajax','L1S2H1','Yes',40),
-('Hector','Ramirez','hector.ramirez@email.com','6475553007','Oakville','L6H5R3','No',0),
-('Isabella','King','isabella.king@email.com','6475553008','Burlington','L7N2B9','No',0),
-('Pablo','Ramirez','pablo.ramirez@email.com','6475553009','Hamilton','L8P1A1','No',0),
-('Tina','Green','tina.green@email.com','6475553010','Markham','L3R5N3','Yes',50),
-('Liam','Stone','liam.stone@email.com','6475553011','Toronto','M6H2Y1','Yes',30),
-('Nina','Lopez','nina.lopez@email.com','6475553012','Mississauga','L5N3T2','No',0),
-('Sam','Khan','sam.khan@email.com','6475553013','Brampton','L6R1Z4','Yes',75),
-('Olga','Petrov','olga.petrov@email.com','6475553014','Vaughan','L4J8C5','No',0),
-('Jake','Miles','jake.miles@email.com','6475553015','Hamilton','L8N3W2','Yes',110),
-('Marcia','Taylor','marcia.taylor@email.com','6475553016','Toronto','M4B1B3','Yes',90),
-('Dwayne','Clarke','dwayne.clarke@email.com','6475553017','Brampton','L6P3S2','No',0),
-('Vanessa','Mills','vanessa.mills@email.com','6475553018','Ajax','L1T2K7','Yes',140),
-('Jordan','Parker','jordan.parker@email.com','6475553019','Mississauga','L4Z1X2','No',0),
-('Keisha','Grant','keisha.grant@email.com','6475553020','Markham','L6C2V1','Yes',65),
-('Andre','Lewis','andre.lewis@email.com','6475553021','Toronto','M3C1P1','Yes',80),
-('Sabrina','Cole','sabrina.cole@email.com','6475553022','Oakville','L6M1K4','No',0),
-('Trevor','Reid','trevor.reid@email.com','6475553023','Hamilton','L8V4G1','Yes',55),
-('Nadia','James','nadia.james@email.com','6475553024','Vaughan','L4L7S2','Yes',130),
-('Renee','Davis','renee.davis@email.com','6475553025','Toronto','M5A2B6','Yes',105),
-('Omar','Grant','omar.grant@email.com','6475553026','Burlington','L7M3H1','No',0),
-('Asha','Wilson','asha.wilson@email.com','6475553027','Ajax','L1Z1L2','Yes',98),
-('Colin','Bennett','colin.bennett@email.com','6475553028','Mississauga','L5R4C4','No',0),
-('Priya','Singh','priya.singh@email.com','6475553029','Markham','L3P7M8','Yes',175),
-('Tasha','Henry','tasha.henry@email.com','6475553030','Toronto','M6G2N2','Yes',44),
-('Sean','Morgan','sean.morgan@email.com','6475553031','Brampton','L6Y5R5','No',0),
-('Maya','Forbes','maya.forbes@email.com','6475553032','Hamilton','L8S2N4','Yes',160),
-('Jermaine','Brooks','jermaine.brooks@email.com','6475553033','Toronto','M1P4A2','Yes',22),
-('Alisha','Campbell','alisha.campbell@email.com','6475553034','Mississauga','L5C1T7','Yes',118),
-('Derrick','White','derrick.white@email.com','6475553035','Oakville','L6J2W8','No',0),
-('Monique','Bailey','monique.bailey@email.com','6475553036','Vaughan','L4H1X9','Yes',84),
-('Carmen','Joseph','carmen.joseph@email.com','6475553037','Ajax','L1S6R3','Yes',71),
-('Ryan','Mitchell','ryan.mitchell@email.com','6475553038','Burlington','L7R3P8','No',0),
-('Kerry','Matthews','kerry.matthews@email.com','6475553039','Toronto','M4C1Y7','Yes',142),
-('Latoya','Powell','latoya.powell@email.com','6475553040','Markham','L3S4K2','Yes',67),
-('Nolan','Young','nolan.young@email.com','6475553041','Brampton','L6X2A9','No',0),
-('Sheena','Russell','sheena.russell@email.com','6475553042','Mississauga','L5M6V4','Yes',93),
-('Devon','Hall','devon.hall@email.com','6475553043','Toronto','M6A3R1','Yes',29),
-('Khadija','Hussain','khadija.hussain@email.com','6475553044','Vaughan','L4K5N2','Yes',101),
-('Patrice','Nelson','patrice.nelson@email.com','6475553045','Hamilton','L8L6E4','No',0),
-('Tariq','Ahmed','tariq.ahmed@email.com','6475553046','Ajax','L1T4X1','Yes',74),
-('Janelle','Ross','janelle.ross@email.com','6475553047','Oakville','L6H6T5','Yes',88),
-('Rohan','Miller','rohan.miller@email.com','6475553048','Toronto','M5R2N7','No',0),
-('Amina','Said','amina.said@email.com','6475553049','Mississauga','L4Y3M3','Yes',53),
-('Shanice','Edwards','shanice.edwards@email.com','6475553050','Brampton','L6S3T4','Yes',112),
-('Leon','Watson','leon.watson@email.com','6475553051','Toronto','M4H1A9','No',0),
-('Bianca','Evans','bianca.evans@email.com','6475553052','Markham','L6E1B8','Yes',136),
-('Chantel','Morris','chantel.morris@email.com','6475553053','Burlington','L7L5V9','Yes',47),
-('Wesley','Barnes','wesley.barnes@email.com','6475553054','Ajax','L1Z0A6','No',0),
-('Naomi','Walker','naomi.walker@email.com','6475553055','Vaughan','L4J9K1','Yes',124),
-('Damian','Scott','damian.scott@email.com','6475553056','Toronto','M2N7L5','Yes',58),
-('Melanie','Carter','melanie.carter@email.com','6475553057','Mississauga','L5V1P9','Yes',97),
-('Dion','Phillips','dion.phillips@email.com','6475553058','Hamilton','L8R2L3','No',0),
-('Arielle','Bryant','arielle.bryant@email.com','6475553059','Oakville','L6K2G7','Yes',149),
-('Troy','Fraser','troy.fraser@email.com','6475553060','Toronto','M1R4P2','No',0),
-('Kimberly','Baker','kimberly.baker@email.com','6475553061','Brampton','L6W4S7','Yes',91),
-('Jerome','Gordon','jerome.gordon@email.com','6475553062','Ajax','L1S7M4','Yes',39),
-('Rebekah','Cruz','rebekah.cruz@email.com','6475553063','Markham','L3T6Y2','No',0),
-('Talia','Wright','talia.wright@email.com','6475553064','Toronto','M5N1P4','Yes',116),
-('Fabian','Cooke','fabian.cooke@email.com','6475553065','Mississauga','L5J4N7','Yes',63),
-('Janine','Harris','janine.harris@email.com','6475553066','Burlington','L7S1W3','Yes',84),
-('Carl','Douglas','carl.douglas@email.com','6475553067','Hamilton','L8M2V8','No',0),
-('Celeste','Brown','celeste.brown@email.com','6475553068','Toronto','M4M2K9','Yes',132),
-('Zara','King','zara.king@email.com','6475553069','Vaughan','L4L1R4','Yes',52),
-('Michael','Francis','michael.francis@email.com','6475553070','Oakville','L6M4B1','No',0),
-('Aaliyah','Whyte','aaliyah.whyte@email.com','6475553071','Markham','L6B0T2','Yes',109),
-('Rico','Campbell','rico.campbell@email.com','6475553072','Ajax','L1Z1N4','No',0),
-('Haley','Murphy','haley.murphy@email.com','6475553073','Toronto','M6P3C7','Yes',43),
-('Corey','Allen','corey.allen@email.com','6475553074','Mississauga','L5A4E5','Yes',72),
-('Vanessa','Richards','vanessa.richards@email.com','6475553075','Brampton','L6X0C8','No',0),
-('Tristan','Hill','tristan.hill@email.com','6475553076','Toronto','M3H5T2','Yes',98),
-('Akeem','Small','akeem.small@email.com','6475553077','Hamilton','L8K4R7','Yes',54),
-('Danielle','Stewart','danielle.stewart@email.com','6475553078','Vaughan','L4K2P3','Yes',126),
-('Shari','Thomas','shari.thomas@email.com','6475553079','Ajax','L1T0A3','No',0),
-('Marcus','McLean','marcus.mclean@email.com','6475553080','Oakville','L6H7B6','Yes',90),
-('Kendra','Pope','kendra.pope@email.com','6475553081','Toronto','M1T2N2','Yes',34),
-('Jody','Turner','jody.turner@email.com','6475553082','Mississauga','L4W3K1','No',0),
-('Nicole','Williams','nicole.williams@email.com','6475553083','Markham','L3S2M9','Yes',140),
-('Orville','James','orville.james@email.com','6475553084','Burlington','L7P4A8','Yes',48),
-('Pauline','Roberts','pauline.roberts@email.com','6475553085','Toronto','M5B2H7','No',0),
-('Kamal','Chambers','kamal.chambers@email.com','6475553086','Brampton','L6R3W1','Yes',68),
-('Sonya','Grant','sonya.grant@email.com','6475553087','Hamilton','L8W3M9','Yes',151),
-('Tyrese','Knight','tyrese.knight@email.com','6475553088','Ajax','L1S5H8','No',0),
-('Racquel','Murray','racquel.murray@email.com','6475553089','Toronto','M4J2T6','Yes',61),
-('Dalia','Johnson','dalia.johnson@email.com','6475553090','Mississauga','L5G3J6','Yes',95),
-('Ethan','Simms','ethan.simms@email.com','6475553091','Oakville','L6L2M4','No',0),
-('Tameka','Bell','tameka.bell@email.com','6475553092','Markham','L3R9H1','Yes',115),
-('Renee','Nurse','renee.nurse@email.com','6475553093','Toronto','M2J4C6','Yes',49),
-('Jovan','Daley','jovan.daley@email.com','6475553094','Vaughan','L4H4T4','No',0),
-('Alana','Moore','alana.moore@email.com','6475553095','Burlington','L7M1N7','Yes',122),
-('Desmond','Stephens','desmond.stephens@email.com','6475553096','Toronto','M6C1X8','Yes',37),
-('Marisa','Black','marisa.black@email.com','6475553097','Ajax','L1T3K5','No',0),
-('Kori','Foster','kori.foster@email.com','6475553098','Hamilton','L8P4K2','Yes',94),
-('Amari','Hylton','amari.hylton@email.com','6475553099','Toronto','M5T1R8','Yes',57),
-('Ruth','Atkins','ruth.atkins@email.com','6475553100','Mississauga','L5K2P9','No',0),
-('Nadine','Brown','nadine.brown@email.com','6475553101','Markham','L3P3Y4','Yes',83),
-('Joel','Palmer','joel.palmer@email.com','6475553102','Brampton','L6Y0P4','Yes',28),
-('Tamara','Lewis','tamara.lewis@email.com','6475553103','Toronto','M1B5A1','No',0),
-('Darnell','Blake','darnell.blake@email.com','6475553104','Oakville','L6M5S3','Yes',76),
-('Jasmine','Grant','jasmine.grant2@email.com','6475553105','Hamilton','L8H6P1','Yes',133),
-('Khalil','Rose','khalil.rose@email.com','6475553106','Ajax','L1Z2A7','No',0),
-('Mikaela','Shaw','mikaela.shaw@email.com','6475553107','Toronto','M4W1K8','Yes',92),
-('Shavonne','James','shavonne.james@email.com','6475553108','Mississauga','L5B4M2','Yes',46);
+INSERT INTO Customers (FirstName, LastName, Email, Phone, City, PostalCode, LoyaltyMember, PointsBalance)
+WITH RECURSIVE seq AS (
+    SELECT 1 AS n
+    UNION ALL
+    SELECT n + 1
+    FROM seq
+    WHERE n < 420
+)
+SELECT
+    ELT(1 + ((n - 1) % 30),
+        'Alicia','Brandon','Cynthia','Elena','Farah','Grace','Hector','Isabella','Pablo','Tina',
+        'Liam','Nina','Sam','Olga','Jake','Marcia','Dwayne','Vanessa','Jordan','Keisha',
+        'Andre','Sabrina','Trevor','Nadia','Maya','Jermaine','Alisha','Monique','Carmen','Ryan'
+    ) AS FirstName,
+
+    ELT(1 + (FLOOR((n - 1) / 30) % 30),
+        'Brown','Lee','Morgan','Price','Ali','Wilson','Ramirez','King','Green','Stone',
+        'Lopez','Khan','Petrov','Miles','Taylor','Clarke','Mills','Parker','Grant','Lewis',
+        'Cole','Reid','James','Davis','Campbell','Bailey','Mitchell','Powell','Russell','Hall'
+    ) AS LastName,
+
+    LOWER(CONCAT(
+        REPLACE(ELT(1 + ((n - 1) % 30),
+            'Alicia','Brandon','Cynthia','Elena','Farah','Grace','Hector','Isabella','Pablo','Tina',
+            'Liam','Nina','Sam','Olga','Jake','Marcia','Dwayne','Vanessa','Jordan','Keisha',
+            'Andre','Sabrina','Trevor','Nadia','Maya','Jermaine','Alisha','Monique','Carmen','Ryan'
+        ), ' ', ''),
+        '.',
+        REPLACE(ELT(1 + (FLOOR((n - 1) / 30) % 30),
+            'Brown','Lee','Morgan','Price','Ali','Wilson','Ramirez','King','Green','Stone',
+            'Lopez','Khan','Petrov','Miles','Taylor','Clarke','Mills','Parker','Grant','Lewis',
+            'Cole','Reid','James','Davis','Campbell','Bailey','Mitchell','Powell','Russell','Hall'
+        ), ' ', ''),
+        n,
+        '@email.com'
+    )) AS Email,
+
+    CONCAT('647555', LPAD(n, 4, '0')) AS Phone,
+
+    CASE
+        WHEN n <= 95 THEN 'Toronto'
+        WHEN n <= 155 THEN 'Mississauga'
+        WHEN n <= 205 THEN 'Brampton'
+        WHEN n <= 245 THEN 'Markham'
+        WHEN n <= 280 THEN 'Vaughan'
+        WHEN n <= 315 THEN 'Hamilton'
+        WHEN n <= 345 THEN 'Ajax'
+        WHEN n <= 380 THEN 'Oakville'
+        ELSE 'Burlington'
+    END AS City,
+
+    CASE
+        WHEN n <= 95  THEN CONCAT('M', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 155 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 205 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 245 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 280 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 315 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 345 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        WHEN n <= 380 THEN CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+        ELSE CONCAT('L', (n % 9) + 1, CHAR(65 + (n % 26)), (n % 10), CHAR(65 + ((n * 3) % 26)), (n * 2) % 10)
+    END AS PostalCode,
+
+    CASE
+        WHEN n % 4 IN (0,1,2) THEN 'Yes'
+        ELSE 'No'
+    END AS LoyaltyMember,
+
+    CASE
+        WHEN n % 4 IN (0,1,2) THEN ((n * 17) % 201)
+        ELSE 0
+    END AS PointsBalance
+FROM seq;
 
 -- =========================================
 -- EMPLOYEES
@@ -429,7 +393,7 @@ JOIN StorePlan S;
 -- =========================================
 INSERT INTO Orders (CustomerID, EmployeeID, LocationID, OrderDate, TotalAmount)
 SELECT
-    ((Q.LocationID * 31 + Q.OrderMonth * 17 + Q.OrderYear + S.n * 13) % 108) + 1 AS CustomerID,
+    ((Q.LocationID * 31 + Q.OrderMonth * 17 + Q.OrderYear + S.n * 13) % 420) + 1 AS CustomerID,
     CASE
         WHEN (S.n % 10) < 5 THEN Q.LocationID
         WHEN (S.n % 10) < 8 THEN Q.LocationID + 10
@@ -722,4 +686,7 @@ SELECT
     ROUND(SUM(TotalAmount), 2) AS MonthlyRevenue
 FROM Orders
 GROUP BY YEAR(OrderDate), MONTH(OrderDate);
+
+
+
 
