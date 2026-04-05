@@ -146,3 +146,41 @@ ORDER BY TotalUnitsSold DESC;
 This reveals the core products driving revenue, allowing the business to prioritize stock levels, promotions, and customer retention strategies.
 
 <img src="best-sellers.png" width="800">
+
+---
+
+## Power BI Dashboard
+
+<img src="sales-dashboard.png" width="800">
+
+--- 
+
+## Business Intelligence Dashboard
+
+This Power BI dashboard was built using the Rooted Earth retail database to transform raw transactional data into clear, actionable business insights.
+
+---
+## Power BI Dashboard
+
+<img src="sales-dashboard.png" width="800">
+
+## Business Intelligence Dashboard
+
+This Power BI dashboard was developed using the Rooted Earth retail database to transform raw transactional data into clear, actionable business insights.
+
+## Key Insights
+
+**Total Revenue:** Generated $4.1M in total sales, providing a high-level view of overall business performance.
+
+**Revenue Trend:** Sales show a steady upward trend throughout the year, with noticeable seasonal peaks, supporting strategic planning for inventory and staffing.
+
+**Top Products:** Highlights high-performing products such as Sea Moss Capsules and Chlorella Powder, enabling targeted marketing and inventory prioritization.
+
+**Revenue by Location:** Identifies top-performing stores, with the Downtown location leading revenue generation, helping guide operational and expansion decisions.
+
+## Tools & Skills Demonstrated
+
+- Power BI (data visualization & dashboard design)
+- Data modeling & relational database integration
+- Business analysis & KPI development
+- Data storytelling and insight communication
