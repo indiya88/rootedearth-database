@@ -151,7 +151,8 @@ This reveals the core products driving revenue, allowing the business to priorit
 
 ## Power BI Dashboard
 
-<img src="sales-dashboard.png" width="800">
+<img src="sales-dashboard.png" width="1000">
+
 
 ## Business Intelligence Dashboard
 
