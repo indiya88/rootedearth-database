@@ -153,17 +153,6 @@ This reveals the core products driving revenue, allowing the business to priorit
 
 <img src="sales-dashboard.png" width="800">
 
---- 
-
-## Business Intelligence Dashboard
-
-This Power BI dashboard was built using the Rooted Earth retail database to transform raw transactional data into clear, actionable business insights.
-
----
-## Power BI Dashboard
-
-<img src="sales-dashboard.png" width="800">
-
 ## Business Intelligence Dashboard
 
 This Power BI dashboard was developed using the Rooted Earth retail database to transform raw transactional data into clear, actionable business insights.
